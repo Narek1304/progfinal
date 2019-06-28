@@ -7,7 +7,7 @@ module.exports = class FinalHero extends LiveForm {
         this.index = index;
         this.energy = 10;
     }
-    //vorpes method
+
     getNewCoordinates() {
         this.directions = [
             [this.x - 2, this.y - 2],
@@ -41,13 +41,13 @@ module.exports = class FinalHero extends LiveForm {
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character);
-    } 
-    //qayluma
+    }
+
     move() {
 
-        // yntruma vandak
+
         var newCell = random(this.chooseCell(4));
-        
+
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -68,7 +68,7 @@ module.exports = class FinalHero extends LiveForm {
         var cell = this.chooseCell(3)
         var miacum = newCell1.concat(cell);
         var newCell = random(miacum)
-        
+
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -84,12 +84,12 @@ module.exports = class FinalHero extends LiveForm {
                     break;
                 }
             }
-            for(var i in YellowEaterArr){
-            if (newX == YellowEaterArr[i].x && newY == YellowEaterArr[i].y) {
-                YellowEaterArr.splice(i, 1);
-                break;
+            for (var i in YellowEaterArr) {
+                if (newX == YellowEaterArr[i].x && newY == YellowEaterArr[i].y) {
+                    YellowEaterArr.splice(i, 1);
+                    break;
+                }
             }
-        }
             this.y = newY;
             this.x = newX;
             this.energy += 2;
@@ -101,8 +101,6 @@ module.exports = class FinalHero extends LiveForm {
         var newCell = random(this.chooseCell(0));
 
         if (this.energy >= 8 && newCell) {
-            // var newYellowEater = new YellowEater(newCell[0], newCell[1], this.index);
-            // yellowEaterArr.push(newYellowEater);
             var newFinalHero = new FinalHero(newCell[0], newCell[1], this.index);
             FinalHeroArr.push(newFinalHero)
             matrix[newCell[1]][newCell[0]] = 5;

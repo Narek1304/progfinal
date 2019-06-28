@@ -13,5 +13,13 @@
     "express": "^4.17.1",
     "socket.io": "^2.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Narek1304/progfinal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Narek1304/progfinal/issues"
+  },
+  "homepage": "https://github.com/Narek1304/progfinal#readme"
 }

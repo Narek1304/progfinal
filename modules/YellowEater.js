@@ -7,7 +7,7 @@ module.exports = class YellowEater extends LiveForm {
         this.index = index;
         this.energy = 10;
     }
-    //vorpes method
+
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -25,10 +25,10 @@ module.exports = class YellowEater extends LiveForm {
         this.getNewCoordinates();
         return super.chooseCell(character);
     }
-    //qayluma
+
     move() {
 
-        //yntruma vandak
+
         var newCell = random(this.chooseCell(0));
         this.energy--;
         if (newCell) {

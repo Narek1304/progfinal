@@ -1,5 +1,3 @@
-
-//! Requiring modules  --  START
 var Grass = require("./modules/Grass.js");
 var GrassEater = require("./modules/GrassEater.js");
 let random = require('./modules/random');
@@ -7,8 +5,6 @@ var Predator = require("./modules/Predator.js");
 var YellowEater = require("./modules/YellowEater.js");
 var FinalHero = require("./modules/FinalHero.js");
 
-
-//! Setting global arrays  --  START
 grassArr = [];
 grassEaterArr = [];
 PredatorArr = [];
@@ -21,12 +17,9 @@ YellowEaterHashiv = 4;
 PredatorHashiv = 4;
 FinalHeroHashiv = 2;
 weather = 0;
-//! Setting global arrays  -- END
 
 
 
-
-//! Creating MATRIX -- START
 function matrixGenerator(matrixSize, grass, grassEater, YellowEater, Predator, FinalHero) {
     for (let i = 0; i < matrixSize; i++) {
         matrix[i] = [];
@@ -35,8 +28,8 @@ function matrixGenerator(matrixSize, grass, grassEater, YellowEater, Predator, F
         }
     }
     for (let i = 0; i < grass; i++) {
-        let customX = Math.floor(random(matrixSize)); // 0-9
-        let customY = Math.floor(random(matrixSize)); // 4
+        let customX = Math.floor(random(matrixSize));
+        let customY = Math.floor(random(matrixSize));
         matrix[customY][customX] = 1;
     }
     for (let i = 0; i < grassEater; i++) {
@@ -64,8 +57,6 @@ matrixGenerator(20, 10, 5, 4, 4, 3);
 
 
 
-
-//! SERVER STUFF  --  START
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
@@ -75,7 +66,7 @@ app.get('/', function (req, res) {
     res.redirect('index.html');
 });
 server.listen(3000);
-//! SERVER STUFF END  --  END
+
 
 
 
@@ -94,7 +85,8 @@ function creatingObjects() {
             } else if (matrix[y][x] == 4) {
                 var predator = new Predator(x, y);
                 PredatorArr.push(predator);
-            } else if (matrix[y][x] == 5) {0
+            } else if (matrix[y][x] == 5) {
+                0
                 var finalHero = new FinalHero(x, y);
                 FinalHeroArr.push(finalHero);
             }
@@ -105,13 +97,13 @@ creatingObjects();
 
 function game() {
     weather++
-    if(weather>20){
-        weather=0;
+    if (weather > 20) {
+        weather = 0;
     }
     if (grassArr[0] !== undefined) {
         for (var i in grassArr) {
             grassArr[i].mul();
-            
+
         }
     }
     if (grassEaterArr[0] !== undefined) {
@@ -119,7 +111,7 @@ function game() {
             grassEaterArr[i].eat();
             grassEaterArr[i].mul();
             grassEaterArr[i].die();
-            
+
         }
     }
     if (YellowEaterArr[0] !== undefined) {
@@ -127,7 +119,7 @@ function game() {
             YellowEaterArr[i].eat();
             YellowEaterArr[i].mul();
             YellowEaterArr[i].die();
-            
+
         }
     }
     if (PredatorArr[0] !== undefined) {
@@ -135,7 +127,7 @@ function game() {
             PredatorArr[i].eat();
             PredatorArr[i].mul();
             PredatorArr[i].die();
-           
+
         }
     }
     if (FinalHeroArr[0] !== undefined) {
@@ -143,11 +135,11 @@ function game() {
             FinalHeroArr[i].eat();
             FinalHeroArr[i].mul();
             FinalHeroArr[i].die();
-           
+
         }
     }
 
-    //! Object to send
+
     let sendData = {
         matrix: matrix,
         grassCounter: grassHashiv,
@@ -157,7 +149,7 @@ function game() {
         FinalHeroCounter: FinalHeroHashiv,
         weather: weather
     }
-    
+
 
     io.sockets.emit("data", sendData);
 }

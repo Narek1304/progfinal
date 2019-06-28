@@ -7,7 +7,7 @@ module.exports = class Predator extends LiveForm {
         this.index = index;
         this.energy = 10;
     }
-    //vorpes method
+
     getNewCoordinates() {
         this.directions = [
             [this.x - 2, this.y - 2],
@@ -42,10 +42,10 @@ module.exports = class Predator extends LiveForm {
         this.getNewCoordinates();
         return super.chooseCell(character);
     }
-    //qayluma
+
     move() {
 
-        // yntruma vandak
+
         var newCell = random(this.chooseCell(0));
         this.energy--;
         if (newCell) {
@@ -67,7 +67,7 @@ module.exports = class Predator extends LiveForm {
         var cell = this.chooseCell(1)
         var miacum = newCell1.concat(cell);
         var newCell = random(miacum)
-        
+
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -83,12 +83,12 @@ module.exports = class Predator extends LiveForm {
                     break;
                 }
             }
-            for(var i in grassArr){
-            if (newX == grassArr[i].x && newY == grassArr[i].y) {
-                grassArr.splice(i, 1);
-                break;
+            for (var i in grassArr) {
+                if (newX == grassArr[i].x && newY == grassArr[i].y) {
+                    grassArr.splice(i, 1);
+                    break;
+                }
             }
-        }
             this.y = newY;
             this.x = newX;
             this.energy += 2;
@@ -105,7 +105,7 @@ module.exports = class Predator extends LiveForm {
             matrix[newCell[1]][newCell[0]] = 4;
             this.energy = 5;
             PredatorHashiv++;
-            
+
         }
     }
     die() {
